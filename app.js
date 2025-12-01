@@ -9,19 +9,19 @@ const customerRoutes = require("./routes/customerRoutes");
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors("*"));
 app.use(express.json());
 
 // Connect to MongoDB
 connectDB();
+app.use("/admin", require("./routes/adminRoutes"));
+app.use("/customers", customerRoutes);
 
 // Basic Test Route
 app.get("/", (req, res) => {
   res.send("Finance App Backend is Running...");
 });
 
-// Use Customer Routes
-app.use("/customers", customerRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
+const createDefaultAdmin = require("./utils/createAdmin");
 require("dotenv").config();
 
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
+    await createDefaultAdmin();
     console.log("✅ MongoDB Connected Successfully!");
   } catch (error) {
     console.error("❌ MongoDB Connection Failed:", error.message);

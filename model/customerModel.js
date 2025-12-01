@@ -5,6 +5,10 @@ const customerSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
+  documentno: {         // <-- USER PROVIDED
+    type: String,
+    unique: true
+  },
   name: {
     type: String,
     required: true
@@ -23,5 +27,4 @@ const customerSchema = new mongoose.Schema({
   }
 });
 
-// This will create a collection called "customers"
 module.exports = mongoose.model("Customer", customerSchema);
