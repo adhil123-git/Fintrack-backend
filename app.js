@@ -3,9 +3,6 @@ const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("./connection");
 
-// Import Routes
-const customerRoutes = require("./routes/customerRoutes");
-
 const app = express();
 
 // Middleware
@@ -15,7 +12,9 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 app.use("/admin", require("./routes/adminRoutes"));
-app.use("/customers", customerRoutes);
+app.use("/customers", require("./routes/customerRoutes"));
+app.use("/loan", require("./routes/loanRoutes"));
+
 
 // Basic Test Route
 app.get("/", (req, res) => {
