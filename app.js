@@ -13,6 +13,7 @@ app.use(express.json());
 connectDB();
 app.use("/admin", require("./routes/adminRoutes"));
 app.use("/customers", require("./routes/customerRoutes"));
+app.use("/transaction", require("./routes/transactionRoutes"));
 app.use("/loan", require("./routes/loanRoutes"));
 
 

@@ -31,7 +31,10 @@ const loanSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
+  remainingBalance: {
+    type: Number,
+    required: true
+  },
   // NEW FIELD
   status: {
     type: String,

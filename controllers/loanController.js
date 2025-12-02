@@ -28,6 +28,7 @@ exports.createLoan = async (req, res) => {
       interestPercentage,
       startDate,
       paymentFrequency,
+      remainingBalance: amount ,
       status: "new"   // 👈 add status on creation
     });
 

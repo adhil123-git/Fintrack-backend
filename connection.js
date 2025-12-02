@@ -4,7 +4,12 @@ require("dotenv").config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    console.time("MongoDB Connection Time");
+
+    await mongoose.connect(process.env.MONGODB_URI, { dbName: "fintrack-db" });
+
+    console.timeEnd("MongoDB Connection Time");
+
     await createDefaultAdmin();
     console.log("✅ MongoDB Connected Successfully!");
   } catch (error) {
