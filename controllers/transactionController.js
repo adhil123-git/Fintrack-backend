@@ -22,12 +22,17 @@ exports.createTransaction = async (req, res) => {
 
     await tx.save();
 
+    // PRINCIPAL PAYMENT LOGIC
     if (transactionType === "Principal amount") {
       loan.remainingBalance -= transactionAmount;
-    } else if (transactionType === "Closing amount") {
+    }
+    // AUTO-CLOSE LOGIC (applies to BOTH types)
+    if (loan.remainingBalance <= 0) {
       loan.remainingBalance = 0;
       loan.status = "closed";
+      loan.closingDate = new Date();
     }
+
 
     await loan.save();
 
@@ -55,7 +60,7 @@ exports.getTransactionsByLoanId = async (req, res) => {
 
     return res.status(200).json({
       status: "success",
-      data: transactions
+      transactions: transactions
     });
 
   } catch (error) {

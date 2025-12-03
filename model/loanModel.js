@@ -38,7 +38,11 @@ const loanSchema = new mongoose.Schema({
   // NEW FIELD
   status: {
     type: String,
-    default: "new"   // 👈 automatically set
+    default: "active"   // 👈 automatically set
+  },
+  closingDate: {
+    type: Date,
+    default: null
   }
 
 }, { timestamps: true });

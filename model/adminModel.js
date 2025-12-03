@@ -14,7 +14,7 @@ const adminSchema = new mongoose.Schema({
     type: String,
     enum: ["light", "dark"],
     default: "light"
-  }
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model("Admin", adminSchema);

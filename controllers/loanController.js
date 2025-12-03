@@ -28,8 +28,8 @@ exports.createLoan = async (req, res) => {
       interestPercentage,
       startDate,
       paymentFrequency,
-      remainingBalance: amount ,
-      status: "new"   // 👈 add status on creation
+      remainingBalance: amount,
+      status: "active"   // 👈 add status on creation
     });
 
     await loan.save();
@@ -57,6 +57,32 @@ exports.getLoansByCustomer = async (req, res) => {
     return res.status(200).json({
       status: "success",
       loans
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: error.message
+    });
+  }
+};
+
+exports.getLoanByLoanId = async (req, res) => {
+  try {
+    const loanId = req.params.loanId;
+
+    const loan = await Loan.findOne({ loanId });
+
+    if (!loan) {
+      return res.status(404).json({
+        status: "error",
+        message: "Loan not found"
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      loan
     });
 
   } catch (error) {
