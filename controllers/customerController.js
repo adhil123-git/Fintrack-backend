@@ -31,7 +31,7 @@ exports.createCustomer = async (req, res) => {
 exports.getAllCustomers = async (req, res) => {
   try {
     const customers = await customerService.getAllCustomers();
-
+     console.log("data fetched");
     return res.status(200).json({
       status: "success",
       message: "Customers fetched successfully",
