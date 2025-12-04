@@ -11,7 +11,7 @@ async function createDefaultAdmin() {
 
     await Admin.create({
       username: "adhil",
-      password: "adhil1234",
+      password: "1234",
       theme: "light"
     });
 

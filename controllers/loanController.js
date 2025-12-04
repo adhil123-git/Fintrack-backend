@@ -33,6 +33,20 @@ exports.createLoan = async (req, res) => {
     });
 
     await loan.save();
+   // ⭐ SET FIRST DUE DATE (same date next month)
+    const start = new Date(startDate);
+    const nextDueDate = new Date(start);
+    nextDueDate.setMonth(start.getMonth() + 1);
+
+    // ⭐ UPDATE CUSTOMER PAYMENT STATUS
+    await Customer.findOneAndUpdate(
+      { customerId },
+      {
+        paymentStatus: "active",
+        nextDueDate: nextDueDate
+      }
+    );
+
 
     return res.status(200).json({
       status: "success",

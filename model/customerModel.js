@@ -21,10 +21,23 @@ const customerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  paymentStatus: {
+    type: String,
+    default: "new"
+  },
+  nextDueDate: {
+    type: Date,
+    default: null
+  },
+  lastPaidDate: {
+    type: Date,
+    default: null
+  },
   createdAt: {
     type: Date,
     default: Date.now
   }
+
 });
 
 module.exports = mongoose.model("Customer", customerSchema);

@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+require("./cron/paymentStatusCron");
+
 const connectDB = require("./connection");
 
 const app = express();

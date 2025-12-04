@@ -47,3 +47,21 @@ exports.getAllCustomers = async (req, res) => {
   }
 };
 
+exports.getDueCustomers = async (req, res) => {
+  try {
+   const dueCustomers = await customerService.getCustomersByStatus("due");
+
+    return res.status(200).json({
+      status: "success",
+      message: "Due customers fetched successfully",
+      data: dueCustomers
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: error.message
+    });
+  }
+};
+

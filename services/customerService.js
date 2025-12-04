@@ -25,7 +25,8 @@ exports.createCustomer = async (data) => {
     documentno,
     name,
     mobilenumber,
-    address: data.address
+    address: data.address,
+    paymentStatus: "new"  
   });
 
   await customer.save();
@@ -35,4 +36,8 @@ exports.createCustomer = async (data) => {
 exports.getAllCustomers = async () => {
   const customers = await Customer.find().sort({ createdAt: -1 });  // newest first
   return customers;
+};
+
+exports.getCustomersByStatus = async (status) => {
+  return await Customer.find({ paymentStatus: status }).sort({ createdAt: -1 });
 };
