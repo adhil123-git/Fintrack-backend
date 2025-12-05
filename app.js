@@ -2,11 +2,11 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 require("./cron/paymentStatusCron");
-
+const morgan = require("morgan");
 const connectDB = require("./connection");
 
 const app = express();
-
+app.use(morgan("dev"));
 // Middleware
 app.use(cors("*"));
 app.use(express.json());
@@ -17,6 +17,7 @@ app.use("/admin", require("./routes/adminRoutes"));
 app.use("/customers", require("./routes/customerRoutes"));
 app.use("/transaction", require("./routes/transactionRoutes"));
 app.use("/loan", require("./routes/loanRoutes"));
+app.use("/translate", require("./routes/translationRoutes"));
 
 
 // Basic Test Route
