@@ -17,7 +17,6 @@ app.use("/admin", require("./routes/adminRoutes"));
 app.use("/customers", require("./routes/customerRoutes"));
 app.use("/transaction", require("./routes/transactionRoutes"));
 app.use("/loan", require("./routes/loanRoutes"));
-app.use("/translate", require("./routes/translationRoutes"));
 
 
 // Basic Test Route
